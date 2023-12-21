@@ -8,5 +8,8 @@ void display(int arr[], int n){
 }
 int main(){
     int arr[100]={20,50,60};
-    display(arr, 3);
+    int cap=100;
+    int element=70;
+    
+    display(arr, 4);
 }
