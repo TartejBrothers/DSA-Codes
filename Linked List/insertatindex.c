@@ -12,17 +12,19 @@ void display(struct node * ptr){
         ptr=ptr->next;
     }
 }
-struct node * insert(struct node * ptr, int element){
+struct node * insert(struct node * ptr, int element, int index){
     struct node * new;
     new =(struct node *) malloc(sizeof(struct node));
-    struct node * ref= ptr;
-   
-    while (ref->next!=NULL){
+    // We need to create a reference of head
+    struct node * ref = ptr;
+    int i=0;
+    while(i!=index-1){
         ref=ref->next;
+        i++;
     }
-    ref->next=new;
     new->data=element;
-    new->next=NULL;
+    new->next=ref->next;
+    ref->next=new;
     return ptr;
     
 
@@ -44,10 +46,12 @@ int main(){
     third-> data=4;
     third->next=NULL;
     display(head);
-    int element;
+    int element,index;
     printf("Enter Element : ");
     scanf("%d",&element);
-    insert(head,element);
+    printf("Enter Index: ");
+    scanf("%d",&index);
+    insert(head,element,index);
     display(head);
     return 0;
 }
