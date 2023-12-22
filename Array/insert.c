@@ -5,17 +5,16 @@ void display(int arr[], int n){
         printf("Element at index %d = %d\n", i, arr[i]);
     }
 }
-int Insert(int arr[], int element, int size, int cap, int index){
+void Insert(int arr[], int element, int size, int cap, int index){
     if (size>=cap){
         printf("Invalid");
-        return -1;
+
     }
     else{
         for (int i=size-1; i>=index;i--){
             arr[i+1]=arr[i];
         }
         arr[index]=element;
-        return 1;
     }
 
 }

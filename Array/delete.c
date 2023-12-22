@@ -5,18 +5,10 @@ void display(int arr[], int n){
         printf("Element at index %d = %d\n", i, arr[i]);
     }
 }
-int Delete(int arr[], int size, int cap, int index){
-    if (size>=cap){
-        printf("Invalid");
-        return -1;
-    }
-    else{
+void Delete(int arr[], int size, int cap, int index){
         for (int i=index; i<=size-1;i++){
             arr[i]=arr[i+1];
         }
-        return 1;
-    }
-
 }
 int main(){
     int arr[100]={20,50,60,40};
