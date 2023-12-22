@@ -12,18 +12,18 @@ void display(struct node * ptr){
         ptr=ptr->next;
     }
 }
-void insert(struct node ** ptr, int element){
+struct node * insert(struct node * ptr, int element){
     struct node * new;
     new =(struct node *) malloc(sizeof(struct node));
-    if (*ptr == NULL) {
-        
+    struct node * ref= ptr;
+   
+    while (ref->next!=NULL){
+        ref=ref->next;
     }
-    while (ptr!=NULL){
-        ptr=ptr->next;
-    }
-    ptr->next=new;
+    ref->next=new;
     new->data=element;
     new->next=NULL;
+    return ptr;
     
 
 }
