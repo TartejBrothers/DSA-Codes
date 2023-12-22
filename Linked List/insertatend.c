@@ -12,15 +12,20 @@ void display(struct node * ptr){
         ptr=ptr->next;
     }
 }
-struct node * insert(struct node * ptr, int element){
- 
+void insert(struct node ** ptr, int element){
     struct node * new;
     new =(struct node *) malloc(sizeof(struct node));
-
-    new->next=ptr;
+    if (*ptr == NULL) {
+        
+    }
+    while (ptr!=NULL){
+        ptr=ptr->next;
+    }
+    ptr->next=new;
     new->data=element;
-    return new;
+    new->next=NULL;
     
+
 }
 int main(){
     struct node * head;
@@ -28,7 +33,6 @@ int main(){
     struct node * third;
 
     // They are dyanmic, so their data is in the heap.
-    head=NULL;
     head=(struct node *) malloc(sizeof(struct node));
     second=(struct node *) malloc(sizeof(struct node));
     third=(struct node *) malloc(sizeof(struct node));
@@ -43,8 +47,7 @@ int main(){
     int element;
     printf("Enter Element : ");
     scanf("%d",&element);
-    
-    head= insert(head,element);
+    insert(head,element);
     display(head);
     return 0;
 }
