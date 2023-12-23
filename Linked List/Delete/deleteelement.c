@@ -20,13 +20,15 @@ struct node * delete (struct node * head, int element){
         printf("List is empty, cannot delete.\n");
         return NULL; 
     }
-    while(ref->data!=element){
+    while(ref->data!=element && ref->next!=NULL){
         ptr=ptr->next;
         ref=ref->next;
 
     }
-    ptr->next=ref->next;
-    free(ref);
+    if (ref->data==element){
+        ptr->next=ref->next;
+        free(ref);
+    }
     return head;
 }
 int main(){
