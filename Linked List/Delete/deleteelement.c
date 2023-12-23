@@ -12,7 +12,7 @@ void display(struct node * ptr){
         ptr=ptr->next;
     }
 }
-struct node * delete (struct node * head){
+struct node * delete (struct node * head, int element){
     struct node * ptr = head;
     struct node * ref= head->next;
 
@@ -20,12 +20,12 @@ struct node * delete (struct node * head){
         printf("List is empty, cannot delete.\n");
         return NULL; 
     }
-    while(ref->next!=NULL){
+    while(ref->data!=element){
         ptr=ptr->next;
         ref=ref->next;
 
     }
-    ptr->next=NULL;
+    ptr->next=ref->next;
     free(ref);
     return head;
 }
@@ -47,7 +47,10 @@ int main(){
     third->next=NULL;
 
     display(head);
-    head = delete(head);
+    int element;
+    printf("Enter Element: ");
+    scanf("%d", &element);
+    head = delete(head, element);
     printf("After Deletion\n");
     display(head);
     return 0;
