@@ -26,12 +26,10 @@ struct node * delete(struct node * head){
         return NULL;
     }
     else{
-        while (ptr->next!=head){
-            ptr=ptr->next;
-        }
-        ptr->next=head->next;
-        free(head);
-        return ptr->next;
+        ptr=head->prev;
+        ptr->prev->next=head;
+        free(ptr);
+        return head;
     }
 }
 int main(){
