@@ -1,32 +1,58 @@
 #include <stdio.h>
-#define n 100
-int stack[n],top=-1;
-void push(){
-        top++;
-        printf("Enter Element: ");
-        scanf("%d",&stack[top]);
-}
-void display(){
-    if (top==-1){
-        printf("Stack is Empty : ");
-    }
-    else{ 
-        for (int i=top;i>=0;i--){
-            printf("Enter Element: %d\n", stack[i]);
-        }
+#include <stdlib.h>
+struct node
+{
+    int data;
+    struct node * next;
+};
+
+void display(struct node * ptr){
+    while(ptr!=NULL){
+        printf("Element = %d\n", ptr->data);
+        ptr=ptr->next;
     }
 }
-void pop(){
-    top=top-1;
+struct node * push(struct node * ptr, int element){
+ 
+    struct node * new;
+    new =(struct node *) malloc(sizeof(struct node));
+
+    new->next=ptr;
+    new->data=element;
+    return new;   
+}
+struct node * pop(struct node * head){
+    struct node * ptr=head;
+    head = head->next;
+    free(ptr);
+    return head;
 }
 int main(){
-    int elements;
-    printf("Enter Number of Elements : ");
-    scanf("%d", &elements);
-    for (int i=0;i<elements;i++){
-        push(); 
-    }
-    pop();
-    display();
+    struct node * head;
+    struct node * second;
+    struct node * third;
+
+    // They are dyanmic, so their data is in the heap.
+    head=NULL;
+    head=(struct node *) malloc(sizeof(struct node));
+    second=(struct node *) malloc(sizeof(struct node));
+    third=(struct node *) malloc(sizeof(struct node));
+
+    head-> data=2;
+    head->next=second;
+    second->data=3;
+    second->next=third;
+    third-> data=4;
+    third->next=NULL;
+    display(head);
+    int element;
+    printf("Enter Element : ");
+    scanf("%d",&element);
+    printf("After Insertion:\n");
+    head= push(head,element);
+    display(head);
+    printf("After Deletion:\n");
+    head=pop(head);
+    display(head);
     return 0;
 }
