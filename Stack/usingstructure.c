@@ -51,8 +51,19 @@ void display(struct stack* ptr){
         printf("Element : %d\n", ptr->arr[i]);
     }
 }
-void peak(struct stack* ptr, int index){
+void peek(struct stack* ptr, int index){
+    if (ptr->top-index-1<0){
+        printf("Position is invalid\n");
+    }
+    else{
     printf("Element at position %d is : %d\n",index, ptr->arr[(ptr->top-index+1)]);
+    }
+}
+int stackTop(struct stack* ptr){
+    return ptr->arr[ptr->top];
+}
+int stackBottom(struct stack *ptr){
+    return ptr->arr[0];
 }
 int main(){
     struct stack * s=(struct stack *) malloc(sizeof(struct stack));
@@ -71,7 +82,10 @@ int main(){
     
     printf("After Popping: \n");
     display(s);
-    peak(s,1);
-
+    peek(s,1);
+    int t=stackTop(s);
+    int b=stackBottom(s);
+    printf("Top:%d\n",t);
+    printf("Bottom:%d\n",b);
     return 0;
 }

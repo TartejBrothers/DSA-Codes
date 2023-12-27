@@ -27,6 +27,8 @@ struct node * pop(struct node * head){
     free(ptr);
     return head;
 }
+
+
 int main(){
     struct node * head;
     struct node * second;
@@ -54,5 +56,6 @@ int main(){
     printf("After Deletion:\n");
     head=pop(head);
     display(head);
+
     return 0;
 }
