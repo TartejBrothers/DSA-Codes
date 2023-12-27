@@ -6,12 +6,13 @@ struct node
     struct node * next;
 };
 
-void display(struct node * ptr){
-    while(ptr!=NULL){
-        printf("Element = %d\n", ptr->data);
-        ptr=ptr->next;
-    }
+void display(struct node * head){
+    if (head == NULL)
+       return;
+    display(head->next);
+    printf("Element : %d\n", head->data);
 }
+
 struct node * push(struct node * ptr, int element){
  
     struct node * new;
@@ -22,13 +23,22 @@ struct node * push(struct node * ptr, int element){
     return new;   
 }
 struct node * pop(struct node * head){
-    struct node * ptr=head;
-    head = head->next;
-    free(ptr);
+    struct node * ptr = head;
+    struct node * ref= head->next;
+
+    if (head == NULL) {
+        printf("List is empty, cannot delete.\n");
+        return NULL; 
+    }
+    while(ref->next!=NULL){
+        ptr=ptr->next;
+        ref=ref->next;
+
+    }
+    ptr->next=NULL;
+    free(ref);
     return head;
 }
-
-
 int main(){
     struct node * head;
     struct node * second;
