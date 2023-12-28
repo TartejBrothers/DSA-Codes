@@ -43,7 +43,7 @@ int main(){
     struct node * head;
     struct node * second;
     struct node * third;
-
+ 
     // They are dyanmic, so their data is in the heap.
     head=NULL;
     head=(struct node *) malloc(sizeof(struct node));
