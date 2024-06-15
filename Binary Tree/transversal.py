@@ -26,6 +26,20 @@ class BT(object):
             transversal = self.preorder_print(start.right, transversal)
         return transversal
 
+    def inorder_print(self, start, transversal):
+        if start:
+            transversal = self.inorder_print(start.left, transversal)
+            transversal += str(start.value) + " "
+            transversal = self.inorder_print(start.right, transversal)
+        return transversal
+
+    def postorder_print(self, start, transversal):
+        if start:
+            transversal = self.postorder_print(start.left, transversal)
+            transversal = self.postorder_print(start.right, transversal)
+            transversal += str(start.value) + " "
+        return transversal
+
 
 tree = BT(1)
 tree.root.left = Node(2)
@@ -35,3 +49,5 @@ tree.root.left.right = Node(5)
 
 
 print(tree.print_tree("preorder"))
+print(tree.print_tree("inorder"))
+print(tree.print_tree("postorder"))
